@@ -1293,6 +1293,9 @@ function startBackup() {
             if (window.Android) {
                 const base64Data = await blobToBase64Android(blob);
                 window.Android.saveBackupFile(base64Data, fileName);
+            } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.saveBackupFile) {
+                const base64Data = await blobToBase64Android(blob);
+                window.webkit.messageHandlers.saveBackupFile.postMessage({ data: base64Data, fileName: fileName });
             } else {
                 const base64Data = await blobToBase64(blob);
                 await saveFile(blob, fileName);
@@ -1457,7 +1460,7 @@ function toDevMail() {
 }
 
 function review() {
-    window.location.href = 'https://play.google.com/store/apps/details?id=com.colormap.devmango1128';
+    window.open('https://apps.apple.com/kr/app/id/id6759428852', '_blank');
 }
 
 async function recommend() {
@@ -1466,14 +1469,20 @@ async function recommend() {
             await navigator.share({
                 title: '지도뿌셔',
                 text: '지도뿌셔 앱을 추천해요!',
-                url: 'https://play.google.com/store/apps/details?id=com.colormap.devmango1128'
+                url: 'https://apps.apple.com/kr/app/id/id6759428852'
             });
             console.log('공유 성공!');
         } catch (error) {
             console.error('공유 실패:', error);
         }
     } else if (window.Android) {
-        window.Android.share('지도뿌셔', '지도뿌셔 앱을 추천해요!', 'https://play.google.com/store/apps/details?id=com.colormap.devmango1128');
+        window.Android.share('지도뿌셔', '지도뿌셔 앱을 추천해요!', 'https://apps.apple.com/kr/app/id/id6759428852');
+    } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.share) {
+        window.webkit.messageHandlers.share.postMessage({
+            title: '지도뿌셔',
+            text: '지도뿌셔 앱을 추천해요!',
+            url: 'https://apps.apple.com/kr/app/id/id6759428852'
+        });
     } else {
         alert('이 브라우저는 추천기능을 지원하지 않습니다.');
         return;
@@ -1486,20 +1495,17 @@ function goApp(div) {
 
     switch (div) {
         case 'L' :
-            url = 'https://play.google.com/store/apps/details?id=com.lotto.devmango1128';
+            url = 'https://apps.apple.com/kr/app/id/id6759428852';
             break;
         case 'P' :
-            url = 'https://play.google.com/store/apps/details?id=com.pomodoro.devmango1128';
+            url = 'https://apps.apple.com/kr/app/id/id6758299819';
             break;
         case 'F' :
-            url = 'https://play.google.com/store/apps/details?id=com.fartsound.devmango1128';
-            break;
-        case 'T' :
-            url = 'https://play.google.com/store/apps/details?id=com.selectmenu.devmango1128';
+            url = 'https://apps.apple.com/kr/app/id/id6758941874';
             break;
     }
 
-    window.location.href = url;
+    window.open(url, '_blank');
 }
 
 function showImagePreview(imgURL) {

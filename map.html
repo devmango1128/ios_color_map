@@ -68,6 +68,8 @@
 
                 if (window.Android) {
                     window.Android.shareImage(base64Image);  // Android 네이티브로 전달
+                } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.shareImage) {
+                    window.webkit.messageHandlers.shareImage.postMessage({ image: base64Image });  // iOS 네이티브로 전달
                 } else {
                     const link = document.createElement('a');
                     link.href = base64Image;
