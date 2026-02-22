@@ -1460,11 +1460,11 @@ function toDevMail() {
 }
 
 function review() {
-    window.open('https://apps.apple.com/kr/app/id/id6759428852', '_blank');
+    window.open('https://apps.apple.com/kr/app/id/id6759512298', '_blank');
 }
 
 async function recommend() {
-    const url = 'https://apps.apple.com/kr/app/id/id6759428852'
+    const url = 'https://apps.apple.com/kr/app/id/id6759512298'
     if (navigator.share) {
         try {
             await navigator.share({
