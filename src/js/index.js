@@ -1464,24 +1464,23 @@ function review() {
 }
 
 async function recommend() {
+    const url = 'https://apps.apple.com/kr/app/id/id6759428852'
     if (navigator.share) {
         try {
             await navigator.share({
                 title: '지도뿌셔',
                 text: '지도뿌셔 앱을 추천해요!',
-                url: 'https://apps.apple.com/kr/app/id/id6759428852'
+                url: url
             });
             console.log('공유 성공!');
         } catch (error) {
             console.error('공유 실패:', error);
         }
-    } else if (window.Android) {
-        window.Android.share('지도뿌셔', '지도뿌셔 앱을 추천해요!', 'https://apps.apple.com/kr/app/id/id6759428852');
     } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.share) {
         window.webkit.messageHandlers.share.postMessage({
             title: '지도뿌셔',
             text: '지도뿌셔 앱을 추천해요!',
-            url: 'https://apps.apple.com/kr/app/id/id6759428852'
+            url: url
         });
     } else {
         alert('이 브라우저는 추천기능을 지원하지 않습니다.');
@@ -1494,13 +1493,13 @@ function goApp(div) {
     let url = '';
 
     switch (div) {
-        case 'L' :
+        case 'A' :
             url = 'https://apps.apple.com/kr/app/id/id6759428852';
             break;
-        case 'P' :
+        case 'B' :
             url = 'https://apps.apple.com/kr/app/id/id6758299819';
             break;
-        case 'F' :
+        case 'C' :
             url = 'https://apps.apple.com/kr/app/id/id6758941874';
             break;
     }
