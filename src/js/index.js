@@ -1496,6 +1496,17 @@ function goApp(div) {
         case 'C' :
             url = 'https://apps.apple.com/kr/app/id/id6758941874';
             break;
+        case 'D' :
+            url = 'https://apps.apple.com/kr/app/id/id6759797934';
+            break;
+        case 'E' :
+            url = 'https://apps.apple.com/kr/app/id/id6759549045';
+            break;
+        case 'F' :
+            url = 'https://apps.apple.com/kr/app/id/id6760191231';
+            break;
+        default :
+            url = 'https://apps.apple.com/kr/app/id/id6758299819';
     }
 
     window.open(url, '_blank');
